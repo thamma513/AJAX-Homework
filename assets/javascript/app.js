@@ -6,7 +6,7 @@ $(document).ready(function () {
         $("#buttons").empty();
 
         for (var i = 0; i < topics.length; i++) {
-            var a = $("<button>");
+            var a = $("<button class='answer-button btn btn-info' btn-lg >");
             a.addClass("topic");
             a.attr("data-name", topics[i]);
             a.text(topics[i]);
@@ -22,18 +22,18 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".topic", function () {
+    $("#actionSports").empty();
     var topic = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?apikey=&api_key=Hn8l18xANORyuAtYGhRPSD9b2p9ppwLW&q="
     + topic + "&limit=10";
     $.ajax({
         url: queryURL,
         method: "GET"
-        })
+    })
     .then(function (response) {
         var results = response.data;
-        console.log(results.data);
+        console.log(results[0]);
         for (var i = 0; i < 10; i++) {
-        $("#actionSports").empty();
         var topicDiv = $("<div class='actionSports'>");
         var p = $("<p>").text("Rating: " + results[i].rating);
         var topicImage = $("<img>");
